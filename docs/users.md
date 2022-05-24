@@ -1,12 +1,16 @@
 # User Endpoint
 
+<p>Keterangan</p>
+<p>Auth : setiap request dengan auth bernilai yes harus dilakukan oleh user/admin yang telah login </p>
+<p>Role : setiap endpoint hanya bisa diakses oleh role tertentu </p>
+
 ### registrasi user
 
 digunakan untuk registrasi user baru
 
-| METHOD | ENDPOINT                   | AUTH |
-| ------ | -------------------------- | ---- |
-| POST   | /api/v1/auth/user/register | no   |
+| METHOD | ENDPOINT                   | AUTH | ROLE |
+| ------ | -------------------------- | ---- | ---- |
+| POST   | /api/v1/auth/user/register | no   | user |
 
 | BODY     |
 | -------- |
@@ -34,9 +38,9 @@ digunakan untuk registrasi user baru
 
 digunakan untuk login user yang telah terdaftar
 
-| METHOD | ENDPOINT                | AUTH |
-| ------ | ----------------------- | ---- |
-| POST   | /api/v1/auth/user/login | no   |
+| METHOD | ENDPOINT                | AUTH | ROLE |
+| ------ | ----------------------- | ---- | ---- |
+| POST   | /api/v1/auth/user/login | no   | user |
 
 | BODY     |
 | -------- |
@@ -57,11 +61,11 @@ digunakan untuk login user yang telah terdaftar
 
 ### logout user
 
-digunakan untuk login user yang telah terdaftar
+digunakan untuk logout user yang telah terdaftar
 
-| METHOD | ENDPOINT                | AUTH |
-| ------ | ----------------------- | ---- |
-| GET   | /api/v1/auth/user/logout | yes  |
+| METHOD | ENDPOINT                 | AUTH | ROLE |
+| ------ | ------------------------ | ---- | ---- |
+| GET    | /api/v1/auth/user/logout | yes  | user |
 
 ```js
 {
