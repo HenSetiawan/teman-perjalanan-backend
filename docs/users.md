@@ -54,3 +54,18 @@ digunakan untuk login user yang telah terdaftar
 }
 
 ```
+
+### logout user
+
+digunakan untuk login user yang telah terdaftar
+
+| METHOD | ENDPOINT                | AUTH |
+| ------ | ----------------------- | ---- |
+| GET   | /api/v1/auth/user/logout | yes  |
+
+```js
+{
+  message:"logout successful",
+}
+
+```
