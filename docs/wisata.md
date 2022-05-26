@@ -46,7 +46,7 @@ digunakan untuk menambahkan data objek wisata baru oleh user
 
 ### ambil semua data objek wisata
 
-digunakan untuk menghapus data objek wisata
+digunakan untuk mengambil semua data objek wisata
 
 | METHOD | ENDPOINT       | AUTH | ROLE |
 | ------ | -------------- | ---- | ---- |
@@ -70,6 +70,35 @@ digunakan untuk menghapus data objek wisata
       categories: ['pantai', 'taman'],
     },
   ];
+  message: 'success get all data';
+}
+```
+
+### ambil detail data objek wisata berdasarkan id
+
+digunakan untuk mengambil semua data objek wisata
+
+| METHOD | ENDPOINT            | AUTH | ROLE |
+| ------ | ------------------- | ---- | ---- |
+| GET    | /api/v1/wisata/{id} | no   | all  |
+
+#### response yang diterima setelah request dikirim
+
+```js
+{
+  data: {
+        id:1,
+        name:"Wisata Pantai Ancol",
+        user_id:1,
+        address:"Pademangan, Jakarta Utara",
+        description:"Destinasi di tepi laut Ancol memiliki pantai yang populer untuk olahraga air dan kompleks di tepi laut",
+        city:"Jakarta",
+        thumbail:"/img/thumnail/ancol.jpg",
+        picture_1:"/img/thumnail/ancol1.jpg",
+        picture_2:"/img/thumnail/ancol2.jpg",
+        picture_3:"/img/thumnail/ancol3.jpg",
+        categories:["pantai","taman"]
+  },
   message: 'success get all data';
 }
 ```
