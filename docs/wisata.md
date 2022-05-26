@@ -1,4 +1,5 @@
-<p>Keterangan</p>
+## <p>Keterangan</p>
+
 <p>Auth : setiap request dengan auth bernilai yes harus dilakukan oleh user/admin yang telah login </p>
 <p>Role : setiap endpoint hanya bisa diakses oleh role tertentu </p>
 
@@ -40,6 +41,36 @@ digunakan untuk menambahkan data objek wisata baru oleh user
   picture_2:"/img/thumnail/ancol2.jpg",
   picture_3:"/img/thumnail/ancol3.jpg",
   categories:["pantai","taman"]
+}
+```
+
+### ambil semua data objek wisata
+
+digunakan untuk menghapus data objek wisata
+
+| METHOD | ENDPOINT       | AUTH | ROLE |
+| ------ | -------------- | ---- | ---- |
+| GET    | /api/v1/wisata | no   | all  |
+
+#### response yang diterima setelah request dikirim
+
+```js
+{
+  data: [
+    {
+      name: 'Ancol',
+      thumbnail: '/img/thumnail/ancol.jpg',
+      city: 'Jakarta',
+      categories: ['pantai', 'taman'],
+    },
+    {
+      name: 'Ancol',
+      thumbnail: '/img/thumnail/ancol.jpg',
+      city: 'Jakarta',
+      categories: ['pantai', 'taman'],
+    },
+  ];
+  message: 'success get all data';
 }
 ```
 
