@@ -1,14 +1,14 @@
-### tambah data objek wisata
-
 <p>Keterangan</p>
 <p>Auth : setiap request dengan auth bernilai yes harus dilakukan oleh user/admin yang telah login </p>
 <p>Role : setiap endpoint hanya bisa diakses oleh role tertentu </p>
 
+### tambah data objek wisata
+
 digunakan untuk menambahkan data objek wisata baru oleh user
 
-| METHOD | ENDPOINT       | AUTH | ROLE |
-| ------ | -------------- | ---- | ---- |
-| POST   | /api/v1/wisata | yes  | user |
+| METHOD | ENDPOINT       | AUTH | ROLE           |
+| ------ | -------------- | ---- | -------------- |
+| POST   | /api/v1/wisata | yes  | user dan admin |
 
 | BODY        |
 | ----------- |
@@ -40,5 +40,21 @@ digunakan untuk menambahkan data objek wisata baru oleh user
   picture_2:"/img/thumnail/ancol2.jpg",
   picture_3:"/img/thumnail/ancol3.jpg",
   categories:["pantai","taman"]
+}
+```
+
+### hapus data objek wisata
+
+digunakan untuk menghapus data objek wisata
+
+| METHOD | ENDPOINT            | AUTH | ROLE           |
+| ------ | ------------------- | ---- | -------------- |
+| DELETE | /api/v1/wisata/{id} | yes  | user dan admin |
+
+#### response yang diterima setelah request dikirim
+
+```js
+{
+  message: 'success delete data with id 1';
 }
 ```
