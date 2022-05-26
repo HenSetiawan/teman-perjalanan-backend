@@ -3,7 +3,7 @@
 <p>Auth : setiap request dengan auth bernilai yes harus dilakukan oleh user/admin yang telah login </p>
 <p>Role : setiap endpoint hanya bisa diakses oleh role tertentu </p>
 
-### tambah data objek wisata
+### 1 tambah data objek wisata
 
 digunakan untuk menambahkan data objek wisata baru oleh user
 
@@ -44,7 +44,7 @@ digunakan untuk menambahkan data objek wisata baru oleh user
 }
 ```
 
-### ambil semua data objek wisata
+### 2 ambil semua data objek wisata
 
 digunakan untuk mengambil semua data objek wisata
 
@@ -74,7 +74,7 @@ digunakan untuk mengambil semua data objek wisata
 }
 ```
 
-### ambil detail data objek wisata berdasarkan id
+### 3 ambil detail data objek wisata berdasarkan id
 
 digunakan untuk mengambil semua data objek wisata
 
@@ -103,7 +103,7 @@ digunakan untuk mengambil semua data objek wisata
 }
 ```
 
-### hapus data objek wisata
+### 4 hapus data objek wisata
 
 digunakan untuk menghapus data objek wisata
 
