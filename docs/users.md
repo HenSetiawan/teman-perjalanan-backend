@@ -96,3 +96,26 @@ data:{
   }
 }~
 ```
+
+### 5 ambil semua data user
+
+digunakan untuk mengambil semua data user
+data akan digunakan oleh admin
+
+| method | endpoint      | auth | role  |
+| ------ | ------------- | ---- | ----- |
+| GET    | /api/v1/users | Yes  | admin |
+
+- response json
+
+```js
+{
+message:"success",
+data:{
+  id:1,
+  name:"Ucup",
+  email:"ucup.com",
+  address:"Ngawi"
+  }
+}~
+```
