@@ -111,11 +111,42 @@ data akan digunakan oleh admin
 ```js
 {
 message:"success",
+data:[
+    {
+    id:1,
+    username:"hendysetiawan",
+    name:"Hendy Setiawan",
+    address:"Ngawi",
+    email:"hendy@gmail.com",
+  },
+  {
+    id:,
+    username:"ucupsetiawan",
+    name:"Ucup Setiawan",
+    address:"Ngawi",
+    email:"hendy@gmail.com",
+  }
+]
+```
+
+### 6 ambil data user aktif
+
+digunakan untuk mengambil data user yang sedang login
+
+| method | endpoint     | auth | role |
+| ------ | ------------ | ---- | ---- |
+| GET    | /api/v1/user | Yes  | user |
+
+- response json
+
+```js
+{
+message:"success",
 data:{
   id:1,
-  name:"Ucup",
-  email:"ucup.com",
-  address:"Ngawi"
-  }
-}~
+  username:"hendysetiawan",
+  name:"Hendy Setiawan",
+  address:"Ngawi",
+  email:"hendy@gmail.com",
+}
 ```
