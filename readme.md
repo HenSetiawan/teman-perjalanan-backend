@@ -8,3 +8,5 @@
 | name           | docs                              |
 | -------------- | --------------------------------- |
 | USER DOCS      | [USERS](./docs/users.md)          |
+| ADMIN DOCS      | [ADMIN](./docs/admin.md)          |
+| WISATA DOCS      | [WISATA](./docs/wisata.md)          |
