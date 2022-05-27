@@ -4,7 +4,7 @@
 <p>Auth : setiap request dengan auth bernilai yes harus dilakukan oleh user/admin yang telah login </p>
 <p>Role : setiap endpoint hanya bisa diakses oleh role tertentu </p>
 
-### registrasi user
+### 1 registrasi user
 
 digunakan untuk registrasi user baru
 
@@ -34,7 +34,7 @@ digunakan untuk registrasi user baru
 
 ```
 
-### login user
+### 2 login user
 
 digunakan untuk login user yang telah terdaftar
 
@@ -59,7 +59,7 @@ digunakan untuk login user yang telah terdaftar
 
 ```
 
-### logout user
+### 3 logout user
 
 digunakan untuk logout user yang telah terdaftar
 
@@ -72,4 +72,27 @@ digunakan untuk logout user yang telah terdaftar
   message:"logout successful",
 }
 
+```
+
+### 4 Hapus user tertentu
+
+digunakan untuk menghapus data user berdasarkan id
+operasi ini dilakukan oleh admin
+
+| method | endpoint          | auth | role  |
+| ------ | ----------------- | ---- | ----- |
+| DELETE | /api/v1/user/{id} | Y    | admin |
+
+- response json
+
+```js
+{
+message:"success",
+data:{
+  id:1,
+  name:"Ucup",
+  email:"ucup.com",
+  address:"Ngawi"
+  }
+}~
 ```
