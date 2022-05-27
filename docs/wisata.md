@@ -62,12 +62,14 @@ digunakan untuk mengambil semua data objek wisata
       thumbnail: '/img/thumnail/ancol.jpg',
       city: 'Jakarta',
       categories: ['pantai', 'taman'],
+      user_id:1,
     },
     {
       name: 'Ancol',
       thumbnail: '/img/thumnail/ancol.jpg',
       city: 'Jakarta',
       categories: ['pantai', 'taman'],
+      user_id:1,
     },
   ];
   message: 'success get all data';
@@ -103,7 +105,39 @@ digunakan untuk mengambil semua data objek wisata
 }
 ```
 
-### 4 hapus data objek wisata
+### 4 ambil semua data objek wisata berdasarkan user tertentu
+
+digunakan untuk mengambil semua data objek wisata berdasarkan user id
+
+| METHOD | ENDPOINT                   | AUTH | ROLE |
+| ------ | -------------------------- | ---- | ---- |
+| GET    | /api/v1/wisata?userid={id} | no   | all  |
+
+#### response yang diterima setelah request dikirim
+
+```js
+{
+  data: [
+    {
+      name: 'Ancol',
+      thumbnail: '/img/thumnail/ancol.jpg',
+      city: 'Jakarta',
+      categories: ['pantai', 'taman'],
+      user_id:1,
+    },
+    {
+      name: 'Ancol',
+      thumbnail: '/img/thumnail/ancol.jpg',
+      city: 'Jakarta',
+      categories: ['pantai', 'taman'],
+      user_id:1,
+    },
+  ];
+  message: 'success get all data';
+}
+```
+
+### 5 hapus data objek wisata
 
 digunakan untuk menghapus data objek wisata
 
