@@ -34,3 +34,20 @@ exports.registerUser = async (user) => {
     return error;
   }
 };
+
+exports.deleteUserById = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from('users')
+      .delete()
+      .match({ id: id });
+    if (error) {
+      console.error(error);
+      return error;
+    }
+    return data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
