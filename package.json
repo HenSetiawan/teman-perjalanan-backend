@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve":"nodemon ./src/index.js"
+    "serve": "nodemon ./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/HenSetiawan/teman-perjalanan-backend#readme",
   "dependencies": {
-    "express": "^4.18.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.16"
   }
 }
