@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "<p> Dokumentasi untuk API project teman perjanalan </p>",
   "main": "index.js",
-  "type": "module",
   "directories": {
     "doc": "docs"
   },

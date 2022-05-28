@@ -1,5 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
-import 'dotenv/config';
+const { createClient } = require('@supabase/supabase-js');
+require('dotenv').config();
 
 // Create a single supabase client for interacting with your database
 const supabase = createClient(
@@ -7,7 +7,7 @@ const supabase = createClient(
   process.env.SUPABASE_KEY
 );
 
-const getUsers = async () => {
+exports.getUsers = async () => {
   try {
     const { data, error } = await supabase.from('users').select();
     if (error) {
@@ -20,5 +20,3 @@ const getUsers = async () => {
     return error;
   }
 };
-
-export { getUsers };
