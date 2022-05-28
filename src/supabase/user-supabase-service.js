@@ -20,3 +20,17 @@ exports.getUsers = async () => {
     return error;
   }
 };
+
+exports.registerUser = async (user) => {
+  try {
+    const { data, error } = await supabase.from('users').insert([user]);
+    if (error) {
+      console.error(error);
+      return error;
+    }
+    return data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
