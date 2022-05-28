@@ -1,9 +1,12 @@
 import { createClient } from '@supabase/supabase-js';
+import 'dotenv/config';
+
+console.log(process.env)
 
 // Create a single supabase client for interacting with your database
 const supabase = createClient(
-  'https://ogxbpcyxlipxnuyrlbml.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9neGJwY3l4bGlweG51eXJsYm1sIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTM0NzA5MjksImV4cCI6MTk2OTA0NjkyOX0.7G5Puqad65WvjHvlpG2YxTR_t4X2ADFLLhejNMsePgs'
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_KEY
 );
 
 const getUsers = async () => {
