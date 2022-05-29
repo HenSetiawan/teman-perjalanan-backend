@@ -7,9 +7,9 @@ const supabase = createClient(
   process.env.SUPABASE_KEY
 );
 
-exports.getUsers = async () => {
+exports.getAllData = async (table) => {
   try {
-    const { data, error } = await supabase.from('users').select();
+    const { data, error } = await supabase.from(table).select();
     if (error) {
       console.error(error);
       return error;
@@ -21,9 +21,9 @@ exports.getUsers = async () => {
   }
 };
 
-exports.registerUser = async (user) => {
+exports.insertData = async (table, newData) => {
   try {
-    const { data, error } = await supabase.from('users').insert([user]);
+    const { data, error } = await supabase.from(table).insert([newData]);
     if (error) {
       console.error(error);
       return error;
@@ -35,17 +35,16 @@ exports.registerUser = async (user) => {
   }
 };
 
-exports.deleteUserById = async (id) => {
+exports.deleteDataById = async (table, id) => {
   try {
     const { data, error } = await supabase
-      .from('users')
+      .from(table)
       .delete()
       .match({ id: id });
     if (error) {
       console.error(error);
-      return error;
     }
-    return data;
+    return {data: data, error: error};
   } catch (error) {
     console.error(error);
     return error;
