@@ -1,12 +1,23 @@
 const express = require('express');
 const route = express.Router();
+const { body } = require('express-validator');
 const userController = require('../controllers/user-controller');
 const adminController = require('../controllers/admin-controller');
 
 route.get('/api/v1/users', userController.getAllUsers);
-route.post('/api/v1/auth/user/register', userController.registerNewUser);
 route.delete('/api/v1/user/:id', userController.deleteUserById);
+route.post(
+  '/api/v1/auth/user/register',
+  body('email').isEmail(),
+  body('password').isLength({ min: 5 }),
+  userController.registerNewUser
+);
 
-route.post('/api/v1/admin/',adminController.addNewAdmin);
+route.post(
+  '/api/v1/admin/',
+  body('email').isEmail(),
+  body('password').isLength({ min: 5 }),
+  adminController.addNewAdmin
+);
 
 module.exports = { route };
