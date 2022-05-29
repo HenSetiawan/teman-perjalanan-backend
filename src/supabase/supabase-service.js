@@ -27,7 +27,7 @@ exports.insertData = async (table, newData) => {
     if (error) {
       console.error(error);
     }
-    return {data: data, error: error};
+    return { data: data, error: error };
   } catch (error) {
     console.error(error);
     return error;
@@ -43,7 +43,24 @@ exports.deleteDataById = async (table, id) => {
     if (error) {
       console.error(error);
     }
-    return {data: data, error: error};
+    return { data: data, error: error };
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+exports.getSpecificData = async (table, column, value) => {
+  try {
+    const { data, error } = await supabase
+      .from(table)
+      .select()
+      .eq(column, value);
+    if (error) {
+      console.error(error);
+      return error;
+    }
+    return data;
   } catch (error) {
     console.error(error);
     return error;
