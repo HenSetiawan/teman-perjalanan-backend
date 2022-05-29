@@ -13,6 +13,7 @@ route.post(
   userController.registerNewUser
 );
 
+route.delete('/api/v1/admin/:id', adminController.deleteAdminById);
 route.post(
   '/api/v1/admin/',
   body('email').isEmail(),

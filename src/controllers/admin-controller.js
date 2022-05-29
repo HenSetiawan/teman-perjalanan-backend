@@ -29,3 +29,17 @@ exports.addNewAdmin = async (req, res) => {
     res.json({ message: 'error', error });
   }
 };
+
+exports.deleteAdminById = async (req, res) => {
+    const idAdmin = req.params.id;
+    try {
+      const result = await supabaseService.deleteDataById('admins', idAdmin);
+      if (result.data.length < 1) {
+        res.json({ message: 'error', result });
+      } else {
+        res.json(result);
+      }
+    } catch (error) {
+      res.json({ message: 'error', error });
+    }
+  };
