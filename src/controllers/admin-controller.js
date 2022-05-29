@@ -31,15 +31,24 @@ exports.addNewAdmin = async (req, res) => {
 };
 
 exports.deleteAdminById = async (req, res) => {
-    const idAdmin = req.params.id;
-    try {
-      const result = await supabaseService.deleteDataById('admins', idAdmin);
-      if (result.data.length < 1) {
-        res.status(404).json({ message: 'error data not found', result });
-      } else {
-        res.json(result);
-      }
-    } catch (error) {
-      res.json({ message: 'error', error });
+  const idAdmin = req.params.id;
+  try {
+    const result = await supabaseService.deleteDataById('admins', idAdmin);
+    if (result.data.length < 1) {
+      res.status(404).json({ message: 'error data not found', result });
+    } else {
+      res.json(result);
     }
-  };
+  } catch (error) {
+    res.json({ message: 'error', error });
+  }
+};
+
+exports.getAllAdmins = async (req, res) => {
+  try {
+    const admins = await supabaseService.getAllData('admins');
+    res.json({ message: 'success', admins });
+  } catch (error) {
+    res.json({ message: 'error', error });
+  }
+};
