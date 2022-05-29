@@ -26,9 +26,8 @@ exports.insertData = async (table, newData) => {
     const { data, error } = await supabase.from(table).insert([newData]);
     if (error) {
       console.error(error);
-      return error;
     }
-    return data;
+    return {data: data, error: error};
   } catch (error) {
     console.error(error);
     return error;
