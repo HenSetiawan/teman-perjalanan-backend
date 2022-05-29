@@ -6,14 +6,14 @@ exports.addNewAdmin = async (req, res) => {
   try {
     const admin = req.body;
     if (
-      user.hasOwnProperty('name') &&
-      user.hasOwnProperty('username') &&
-      user.hasOwnProperty('email') &&
-      user.hasOwnProperty('password')
+      admin.hasOwnProperty('name') &&
+      admin.hasOwnProperty('username') &&
+      admin.hasOwnProperty('email') &&
+      admin.hasOwnProperty('password')
     ) {
       bcrypt.hash(admin.password, saltRounds, async (err, hash) => {
         admin.password = hash;
-        const result = await supabaseService.insertData('users', admin);
+        const result = await supabaseService.insertData('admins', admin);
         res.json(result);
       });
     } else {
@@ -21,6 +21,6 @@ exports.addNewAdmin = async (req, res) => {
       return;
     }
   } catch (error) {
-    res.json(error);
+    res.json({message: 'error', error});
   }
 };

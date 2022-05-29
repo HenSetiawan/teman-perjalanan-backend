@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 // router
-const { route } = require('./routers/route-user');
+const { route } = require('./routers/route');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
