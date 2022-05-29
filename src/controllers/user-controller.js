@@ -45,7 +45,7 @@ exports.deleteUserById = async (req, res) => {
   try {
     const result = await supabaseService.deleteDataById('users', idUser);
     if (result.data.length < 1) {
-      res.json({ message: 'error', result });
+      res.status(404).json({ message: 'error data not found', result });
     } else {
       res.json(result);
     }
