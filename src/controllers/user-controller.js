@@ -15,7 +15,7 @@ exports.registerNewUser = async (req, res) => {
       bcrypt.hash(user.password, saltRounds, async (err, hash) => {
         user.password = hash;
         const result = await userSupabaseService.insertData('users', user);
-        res.json({ message: 'success', user: result });
+        res.json(result);
       });
     } else {
       res.json({ message: `user data not complete` });
