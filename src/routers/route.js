@@ -15,6 +15,7 @@ route.post(
 
 route.delete('/api/v1/admin/:id', adminController.deleteAdminById);
 route.get('/api/v1/admins', adminController.getAllAdmins);
+route.post('/api/v1/auth/admin/login', adminController.loginAdmin)
 route.post(
   '/api/v1/admin/',
   body('email').isEmail(),
