@@ -1,4 +1,6 @@
 const userSupabaseService = require('../supabase/supabase-service');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 exports.registerNewUser = async (req, res) => {
   try {
@@ -10,8 +12,11 @@ exports.registerNewUser = async (req, res) => {
       user.hasOwnProperty('password') &&
       user.hasOwnProperty('address')
     ) {
-      const result = await userSupabaseService.insertData('users', user);
-      res.json({ message: 'success', result });
+      bcrypt.hash(user.password, saltRounds, async (err, hash) => {
+        user.password = hash;
+        const result = await userSupabaseService.insertData('users', user);
+        res.json({ message: 'success', user: result });
+      });
     } else {
       res.json({ message: `user data not complete` });
       return;
