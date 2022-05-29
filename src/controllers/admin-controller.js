@@ -1,6 +1,8 @@
 const supabaseService = require('../supabase/supabase-service');
 const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const saltRounds = 10;
 
 exports.addNewAdmin = async (req, res) => {
@@ -48,6 +50,40 @@ exports.getAllAdmins = async (req, res) => {
   try {
     const admins = await supabaseService.getAllData('admins');
     res.json({ message: 'success', admins });
+  } catch (error) {
+    res.json({ message: 'error', error });
+  }
+};
+
+exports.loginAdmin = async (req, res) => {
+  const { username, password } = req.body;
+  const adminJwtKey = process.env.ADMIN_JWT_KEY;
+
+  try {
+    const admin = await supabaseService.getSpecificData(
+      'admins',
+      'username',
+      username
+    );
+    if (admin.length < 1) {
+      return res
+        .status(404)
+        .json({ message: `username ${username} not found` });
+    }
+
+    adminPassword = admin[0].password;
+    bcrypt.compare(password, adminPassword, (err, result) => {
+      if (result) {
+        jwt.sign({ admin }, adminJwtKey, (err, token) => {
+          return res.json({
+            message: 'login succes',
+            token: token,
+          });
+        });
+      } else {
+        return res.json({ message: 'username or password is wrong' });
+      }
+    });
   } catch (error) {
     res.json({ message: 'error', error });
   }
