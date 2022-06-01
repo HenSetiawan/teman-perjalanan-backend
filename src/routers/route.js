@@ -35,5 +35,6 @@ route.post(
   adminAuth.isAdmin,
   adminController.addNewAdmin
 );
+route.get('/api/v1/admin', adminAuth.isAdmin, adminController.getCurrentAdmin);
 
 module.exports = { route };

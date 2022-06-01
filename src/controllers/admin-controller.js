@@ -75,7 +75,7 @@ exports.loginAdmin = async (req, res) => {
     bcrypt.compare(password, adminPassword, (err, result) => {
       if (result) {
         jwt.sign(
-          { id: admin[0].id, role: admin },
+          { id: admin[0].id, role: 'admin' },
           adminJwtKey,
           (err, token) => {
             return res.json({
@@ -90,5 +90,18 @@ exports.loginAdmin = async (req, res) => {
     });
   } catch (error) {
     res.json({ message: 'error', error });
+  }
+};
+
+exports.getCurrentAdmin = async (req, res) => {
+  const { id } = req.adminData;
+  try {
+    const admin = await supabaseService.getSpecificData('admins', 'id', id);
+    return res.status(200).json({
+      message: 'success',
+      admin: { name: admin[0].name, email: admin[0].email },
+    });
+  } catch (error) {
+    res.status(400).json({ message: 'error', error });
   }
 };
