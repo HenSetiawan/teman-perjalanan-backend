@@ -29,25 +29,7 @@ data:{
 }
 ```
 
-### 2 Logout Admin
-
-- digunakan untuk login admin
-
-| method | endpoint                  | auth |
-| ------ | ------------------------- | ---- |
-| GET    | /api/v1/auth/admin/logout | Y    |
-
-- response json
-
-```js
-{
-
-  message:"logout successful",
-
-}
-```
-
-### 3 Tambah Data Admin
+### 2 Tambah Data Admin
 
 - digunakan untuk menambah admin baru
 
@@ -79,7 +61,7 @@ data:{
 }
 ```
 
-### 4 Hapus Data Admin
+### 3 Hapus Data Admin
 
 - digunakan untuk menghapus data admin
 
@@ -102,7 +84,7 @@ data:{
 }
 ```
 
-### 5 Ubah Data Admin
+### 4 Ubah Data Admin
 
 - digunakan untuk mengubah data admin
 
@@ -133,7 +115,7 @@ data:{
 }
 ```
 
-### 6 Ambil Data Admin yang Sedang Aktif
+### 5 Ambil Data Admin yang Sedang Aktif
 
 - digunakan untuk mengambil data admin
 
@@ -156,7 +138,7 @@ data:{
 }
 ```
 
-### 7 Ambil Semua Data Admin
+### 6 Ambil Semua Data Admin
 
 - digunakan untuk mengambil data admin
 

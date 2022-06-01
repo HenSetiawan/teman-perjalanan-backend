@@ -59,22 +59,9 @@ digunakan untuk login user yang telah terdaftar
 
 ```
 
-### 3 logout user
 
-digunakan untuk logout user yang telah terdaftar
 
-| METHOD | ENDPOINT                 | AUTH | ROLE |
-| ------ | ------------------------ | ---- | ---- |
-| GET    | /api/v1/auth/user/logout | yes  | user |
-
-```js
-{
-  message:"logout successful",
-}
-
-```
-
-### 4 Hapus user tertentu
+### 3 Hapus user tertentu
 
 digunakan untuk menghapus data user berdasarkan id
 operasi ini dilakukan oleh admin
@@ -97,7 +84,7 @@ data:{
 }~
 ```
 
-### 5 ambil semua data user
+### 4 ambil semua data user
 
 digunakan untuk mengambil semua data user
 data akan digunakan oleh admin
@@ -129,7 +116,7 @@ data:[
 ]
 ```
 
-### 6 ambil data user aktif
+### 5 ambil data user aktif
 
 digunakan untuk mengambil data user yang sedang login
 
