@@ -105,3 +105,26 @@ exports.getCurrentAdmin = async (req, res) => {
     res.status(400).json({ message: 'error', error });
   }
 };
+
+exports.updateAdmin = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const { name, username, email } = req.body;
+  const id = req.params.id;
+  try {
+    const admin = await supabaseService.updateSpecificData('admins', id, {
+      name,
+      username,
+      email,
+    });
+
+    return res.status(200).json({
+      message: 'success',
+      admin: { name: admin[0].name, email: admin[0].email, id: admin[0].id },
+    });
+  } catch (error) {
+    res.status(400).json({ message: 'error', error });
+  }
+};

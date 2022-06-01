@@ -66,3 +66,20 @@ exports.getSpecificData = async (table, column, value) => {
     return error;
   }
 };
+
+exports.updateSpecificData = async (table, id, Newdata) => {
+  try {
+    const { data, error } = await supabase
+      .from(table)
+      .update(Newdata)
+      .match({ id: id });
+    if (error) {
+      console.error(error);
+      return error;
+    }
+    return data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};

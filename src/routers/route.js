@@ -36,5 +36,13 @@ route.post(
   adminController.addNewAdmin
 );
 route.get('/api/v1/admin', adminAuth.isAdmin, adminController.getCurrentAdmin);
+route.put(
+  '/api/v1/admin/:id',
+  body('email').isEmail(),
+  body('name').isLength({ min: 5 }),
+  body('username').isLength({ min: 5 }),
+  [adminAuth.isAdmin],
+  adminController.updateAdmin
+);
 
 module.exports = { route };
