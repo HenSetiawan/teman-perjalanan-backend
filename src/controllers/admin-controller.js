@@ -74,12 +74,16 @@ exports.loginAdmin = async (req, res) => {
     adminPassword = admin[0].password;
     bcrypt.compare(password, adminPassword, (err, result) => {
       if (result) {
-        jwt.sign({ admin }, adminJwtKey, (err, token) => {
-          return res.json({
-            message: 'login succes',
-            token: token,
-          });
-        });
+        jwt.sign(
+          { id: admin[0].id, role: admin },
+          adminJwtKey,
+          (err, token) => {
+            return res.json({
+              message: 'login succes',
+              token: token,
+            });
+          }
+        );
       } else {
         return res.json({ message: 'username or password is wrong' });
       }
