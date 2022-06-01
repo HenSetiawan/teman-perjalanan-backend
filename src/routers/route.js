@@ -31,7 +31,9 @@ route.post('/api/v1/auth/admin/login', adminController.loginAdmin);
 route.post(
   '/api/v1/admin/',
   body('email').isEmail(),
+  body('name').isLength({ min: 1 }),
   body('password').isLength({ min: 5 }),
+  body('username').isLength({ min: 1 }),
   adminAuth.isAdmin,
   adminController.addNewAdmin
 );
