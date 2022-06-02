@@ -3,6 +3,7 @@ const route = express.Router();
 const { body } = require('express-validator');
 const userController = require('../controllers/user-controller');
 const adminController = require('../controllers/admin-controller');
+const destinationController = require('../controllers/destination-controller');
 const adminAuth = require('../middlewares/admin-auth');
 
 // user route
@@ -21,13 +22,13 @@ route.post(
 );
 
 // admin routes
+route.post('/api/v1/auth/admin/login', adminController.loginAdmin);
 route.delete(
   '/api/v1/admin/:id',
   adminAuth.isAdmin,
   adminController.deleteAdminById
 );
 route.get('/api/v1/admins', adminAuth.isAdmin, adminController.getAllAdmins);
-route.post('/api/v1/auth/admin/login', adminController.loginAdmin);
 route.post(
   '/api/v1/admin/',
   body('email').isEmail(),
@@ -43,8 +44,11 @@ route.put(
   body('email').isEmail(),
   body('name').isLength({ min: 5 }),
   body('username').isLength({ min: 5 }),
-  [adminAuth.isAdmin],
+  adminAuth.isAdmin,
   adminController.updateAdmin
 );
+
+// destination
+route.get('/api/v1/destinations', destinationController.getAllDestinations);
 
 module.exports = { route };
