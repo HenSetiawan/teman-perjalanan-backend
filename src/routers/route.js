@@ -50,5 +50,9 @@ route.put(
 
 // destination
 route.get('/api/v1/destinations', destinationController.getAllDestinations);
+route.post(
+  '/api/v1/destinations',
+  destinationController.addNewDestination
+);
 
 module.exports = { route };

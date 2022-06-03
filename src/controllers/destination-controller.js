@@ -1,4 +1,6 @@
 const supabaseService = require('../supabase/supabase-service');
+const fs = require('fs');
+const path = require('path');
 
 exports.getAllDestinations = async (req, res) => {
   try {
@@ -7,4 +9,8 @@ exports.getAllDestinations = async (req, res) => {
   } catch (error) {
     res.json({ message: 'error', error });
   }
+};
+
+exports.addNewDestination = async (req, res) => {
+
 };

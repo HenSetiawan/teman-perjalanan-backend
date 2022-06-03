@@ -83,3 +83,22 @@ exports.updateSpecificData = async (table, id, Newdata) => {
     return error;
   }
 };
+
+exports.uploadFile = async (bucket, file, filename) => {
+  try {
+    const { data, error } = await supabase.storage
+      .from(bucket)
+      .upload(filename, file, {
+        cacheControl: '3600',
+        upsert: false,
+      });
+    if (error) {
+      console.error(error);
+      return error;
+    }
+    return data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
