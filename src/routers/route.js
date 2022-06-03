@@ -50,9 +50,10 @@ route.put(
 
 // destination
 route.get('/api/v1/destinations', destinationController.getAllDestinations);
-route.post(
-  '/api/v1/destinations',
-  destinationController.addNewDestination
+route.post('/api/v1/destinations', destinationController.addNewDestination);
+route.delete(
+  '/api/v1/destination/:id',
+  destinationController.deleteDestination
 );
 
 module.exports = { route };

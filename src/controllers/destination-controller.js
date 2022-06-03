@@ -11,6 +11,18 @@ exports.getAllDestinations = async (req, res) => {
   }
 };
 
-exports.addNewDestination = async (req, res) => {
+exports.addNewDestination = async (req, res) => {};
 
+exports.deleteDestination = async (req, res) => {
+  const idDestination = req.params.id;
+  try {
+    const result = await supabaseService.deleteDataById('wisata', idDestination);
+    if (result.data.length < 1) {
+      res.status(404).json({ message: 'error data not found', result });
+    } else {
+      res.json(result);
+    }
+  } catch (error) {
+    res.json({ message: 'error', error });
+  }
 };
