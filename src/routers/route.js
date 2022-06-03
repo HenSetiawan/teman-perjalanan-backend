@@ -1,10 +1,13 @@
 const express = require('express');
 const route = express.Router();
 const { body } = require('express-validator');
+// controller
 const userController = require('../controllers/user-controller');
 const adminController = require('../controllers/admin-controller');
 const destinationController = require('../controllers/destination-controller');
+// middlewares
 const adminAuth = require('../middlewares/admin-auth');
+const fileUpload = require('../middlewares/file-upload');
 
 // user route
 route.get('/api/v1/users', adminAuth.isAdmin, userController.getAllUsers);
@@ -50,7 +53,12 @@ route.put(
 
 // destination
 route.get('/api/v1/destinations', destinationController.getAllDestinations);
-route.post('/api/v1/destinations', destinationController.addNewDestination);
+route.get('api/v1/destination/:id', destinationController.getDetailDestination);
+route.post(
+  '/api/v1/destination',
+  fileUpload.single('file'),
+  destinationController.addNewDestination
+);
 route.delete(
   '/api/v1/destination/:id',
   destinationController.deleteDestination
