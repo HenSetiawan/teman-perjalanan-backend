@@ -9,7 +9,23 @@ exports.getAllDestinations = async (req, res) => {
   }
 };
 
-exports.addNewDestination = async (req, res) => {};
+exports.addNewDestination = async (req, res) => {
+  const imagePath = req.file.path.split('/');
+  const { name, description, city, address } = req.body;
+  const imageName = imagePath[imagePath.length - 1];
+  try {
+    const result = await supabaseService.insertData('wisata', {
+      name,
+      description,
+      city,
+      address,
+      thumbail: imageName,
+    });
+    res.json({ message: 'success', result });
+  } catch (error) {
+    res.json({ message: 'error', error });
+  }
+};
 
 exports.deleteDestination = async (req, res) => {
   const idDestination = req.params.id;
