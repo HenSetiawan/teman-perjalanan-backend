@@ -66,3 +66,39 @@ exports.getSpecificData = async (table, column, value) => {
     return error;
   }
 };
+
+exports.updateSpecificData = async (table, id, Newdata) => {
+  try {
+    const { data, error } = await supabase
+      .from(table)
+      .update(Newdata)
+      .match({ id: id });
+    if (error) {
+      console.error(error);
+      return error;
+    }
+    return data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+exports.uploadFile = async (bucket, file, filename) => {
+  try {
+    const { data, error } = await supabase.storage
+      .from(bucket)
+      .upload(filename, file, {
+        cacheControl: '3600',
+        upsert: false,
+      });
+    if (error) {
+      console.error(error);
+      return error;
+    }
+    return data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};

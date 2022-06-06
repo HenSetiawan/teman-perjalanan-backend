@@ -12,21 +12,11 @@ exports.addNewAdmin = async (req, res) => {
   }
   try {
     const admin = req.body;
-    if (
-      admin.hasOwnProperty('name') &&
-      admin.hasOwnProperty('username') &&
-      admin.hasOwnProperty('email') &&
-      admin.hasOwnProperty('password')
-    ) {
-      bcrypt.hash(admin.password, saltRounds, async (err, hash) => {
-        admin.password = hash;
-        const result = await supabaseService.insertData('admins', admin);
-        res.json(result);
-      });
-    } else {
-      res.json({ message: `admin data not complete` });
-      return;
-    }
+    bcrypt.hash(admin.password, saltRounds, async (err, hash) => {
+      admin.password = hash;
+      const result = await supabaseService.insertData('admins', admin);
+      return res.status(200).json(result);
+    });
   } catch (error) {
     res.json({ message: 'error', error });
   }
@@ -75,7 +65,7 @@ exports.loginAdmin = async (req, res) => {
     bcrypt.compare(password, adminPassword, (err, result) => {
       if (result) {
         jwt.sign(
-          { id: admin[0].id, role: admin },
+          { id: admin[0].id, role: 'admin' },
           adminJwtKey,
           (err, token) => {
             return res.json({
@@ -90,5 +80,41 @@ exports.loginAdmin = async (req, res) => {
     });
   } catch (error) {
     res.json({ message: 'error', error });
+  }
+};
+
+exports.getCurrentAdmin = async (req, res) => {
+  const { id } = req.adminData;
+  try {
+    const admin = await supabaseService.getSpecificData('admins', 'id', id);
+    return res.status(200).json({
+      message: 'success',
+      admin: { name: admin[0].name, email: admin[0].email },
+    });
+  } catch (error) {
+    res.status(400).json({ message: 'error', error });
+  }
+};
+
+exports.updateAdmin = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const { name, username, email } = req.body;
+  const id = req.params.id;
+  try {
+    const admin = await supabaseService.updateSpecificData('admins', id, {
+      name,
+      username,
+      email,
+    });
+
+    return res.status(200).json({
+      message: 'success',
+      admin: { name: admin[0].name, email: admin[0].email, id: admin[0].id },
+    });
+  } catch (error) {
+    res.status(400).json({ message: 'error', error });
   }
 };
