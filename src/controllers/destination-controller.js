@@ -14,15 +14,19 @@ exports.addNewDestination = async (req, res) => {
   console.log(req.file);
   const imageName =
     new Date().toISOString().replace(/:/g, '-') + '-' + req.file.originalname;
-    
+
   try {
     await supabaseService.uploadFile('destinations', req.file, imageName);
+    const publicURL = await supabaseService.getImagePublicUrl(
+      'destinations',
+      imageName
+    );
     const result = await supabaseService.insertData('wisata', {
       name,
       description,
       city,
       address,
-      thumbail: imageName,
+      thumbail: publicURL,
     });
     res.json({ message: 'success', result });
   } catch (error) {

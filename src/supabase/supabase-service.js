@@ -96,3 +96,13 @@ exports.uploadFile = async (bucket, file, fileName) => {
     return error;
   }
 };
+
+exports.getImagePublicUrl = async (bucket, fileName) => {
+  try {
+    const { publicURL } = supabase.storage.from(bucket).getPublicUrl(fileName);
+    return publicURL;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
