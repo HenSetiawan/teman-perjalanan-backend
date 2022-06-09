@@ -84,18 +84,34 @@ exports.updateSpecificData = async (table, id, Newdata) => {
   }
 };
 
-exports.uploadFile = async (bucket, file, filename) => {
+exports.uploadFile = async (bucket, file, fileName) => {
   try {
     const { data, error } = await supabase.storage
       .from(bucket)
-      .upload(filename, file, {
-        cacheControl: '3600',
-        upsert: false,
+      .upload(fileName, file.buffer, {
+        contentType: file.mimetype,
       });
-    if (error) {
-      console.error(error);
-      return error;
-    }
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+exports.getImagePublicUrl = async (bucket, fileName) => {
+  try {
+    const { publicURL } = supabase.storage.from(bucket).getPublicUrl(fileName);
+    return publicURL;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+exports.deleteImage = async (bucket, fileName) => {
+  try {
+    const { data, error } = await supabase.storage
+      .from(bucket)
+      .remove([fileName]);
     return data;
   } catch (error) {
     console.error(error);
