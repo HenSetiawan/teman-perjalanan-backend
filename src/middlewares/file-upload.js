@@ -1,17 +1,5 @@
-const path = require('path');
 const multer = require('multer');
-
-const storage = multer.diskStorage({
-  destination: function (req, file, callback) {
-    callback(null, path.join(__dirname, '../../public/'));
-  },
-  filename: function (req, file, callback) {
-    callback(
-      null,
-      new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname
-    );
-  },
-});
+const memoryStorage = multer.memoryStorage();
 
 const filter = (req, file, cb) => {
   if (
@@ -26,6 +14,5 @@ const filter = (req, file, cb) => {
   }
 };
 
-const upload = multer({ storage: storage, fileFilter: filter });
-
-module.exports = upload;
+const fileUpload = multer({ storage: memoryStorage, fileFilter: filter });
+module.exports = fileUpload;

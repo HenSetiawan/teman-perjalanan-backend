@@ -10,10 +10,13 @@ exports.getAllDestinations = async (req, res) => {
 };
 
 exports.addNewDestination = async (req, res) => {
-  const imagePath = req.file.path.split('/');
   const { name, description, city, address } = req.body;
-  const imageName = imagePath[imagePath.length - 1];
+  console.log(req.file);
+  const imageName =
+    new Date().toISOString().replace(/:/g, '-') + '-' + req.file.originalname;
+    
   try {
+    await supabaseService.uploadFile('destinations', req.file, imageName);
     const result = await supabaseService.insertData('wisata', {
       name,
       description,

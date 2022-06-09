@@ -53,10 +53,13 @@ route.put(
 
 // destination
 route.get('/api/v1/destinations', destinationController.getAllDestinations);
-route.get('api/v1/destination/:id', destinationController.getDetailDestination);
+route.get(
+  '/api/v1/destination/:id',
+  destinationController.getDetailDestination
+);
 route.post(
   '/api/v1/destination',
-  fileUpload.single('file'),
+  fileUpload.single('image'),
   destinationController.addNewDestination
 );
 route.delete(
