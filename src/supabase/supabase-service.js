@@ -106,3 +106,15 @@ exports.getImagePublicUrl = async (bucket, fileName) => {
     return error;
   }
 };
+
+exports.deleteImage = async (bucket, fileName) => {
+  try {
+    const { data, error } = await supabase.storage
+      .from(bucket)
+      .remove([fileName]);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
