@@ -75,7 +75,7 @@ exports.getDetailDestination = async (req, res) => {
     );
     return res.status(200).json({
       message: 'success',
-      destination,
+      destination: destination[0],
     });
   } catch (error) {
     res.status(400).json({ message: 'error', error });
