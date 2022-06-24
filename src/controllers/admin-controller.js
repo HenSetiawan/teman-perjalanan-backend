@@ -101,13 +101,15 @@ exports.updateAdmin = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const { name, username, email } = req.body;
+  const { name, username, email,phone, address} = req.body;
   const id = req.params.id;
   try {
     const admin = await supabaseService.updateSpecificData('admins', id, {
       name,
       username,
       email,
+      phone,
+      address,
     });
 
     return res.status(200).json({
